@@ -30,6 +30,8 @@ function newgame(dimension) {
 			board[i][j] = 0;
 		}
 	}
+	board[1][1] = 3;
+	board[dim - 2][dim - 2] = -3
 	turn = 1;
 	spread = false;
 	start();
@@ -46,8 +48,9 @@ function draw_board() {
 	var tb = document.getElementById("board");
 	// clear game board
 	while (tb.firstChild) tb.removeChild(tb.firstChild);
-	var offset = (7 - dim)*12;
-	var step = 30;
+
+	var step = Math.min(document.documentElement.clientWidth, document.documentElement.clientHeight) / 10;
+	var offset = (7 - dim)*step/2;
 
 	for (var i = 0; i < dim; i++) {
 		for (var j = 0; j < dim; j++) {
@@ -58,7 +61,8 @@ function draw_board() {
 			cell.style.top = j * step + offset;
 			cell.style.left = i * step + offset;
 			cell.id = String(i) + String(j);
-			cell.innerHTML = board[i][j];
+			cell.innerHTML = Math.abs(board[i][j]);
+			cellColor(cell, i, j);
 			addattr(cell);
 			tb.appendChild(cell);
 		}
@@ -100,9 +104,9 @@ function iSClickable(element) {
 	var x = parseInt(element.id.substr(0, 1));
 	var y = parseInt(element.id.substr(1, 1));
 	if (spread) {
-		return (board[x][y] * turn == 4);
+		return (board[x][y] * turn >= 4);
 	}
-	if (board[x][y] == 0) return true;
+	//if (board[x][y] == 0) return true;
 	if (board[x][y] * turn > 0) return true;
 	return false;
 }
@@ -110,7 +114,7 @@ function iSClickable(element) {
 function isSpreadable() {
 	for (var i = 0; i < dim; i++) {
 		for (var j = 0; j < dim; j++) {
-			if (board[i][j] == 4 || board[i][j] == -4) return true;
+			if (board[i][j] >= 4 || board[i][j] <= -4) return true;
 		}
 	}
 	return false;
@@ -118,9 +122,17 @@ function isSpreadable() {
 
 function cellColor(element, x, y) {
 	if (board[x][y] > 0) {
-		element.className = "cell stack_plus";
+		if (board[x][y] >= 4) {
+			element.className = "cell stack_plus blinking";
+		} else {
+			element.className = "cell stack_plus";
+		}
 	} else if (board[x][y] < 0) {
-		element.className = "cell stack_minus";
+		if (board[x][y] <= -4) {
+			element.className = "cell stack_minus blinking";
+		} else {
+			element.className = "cell stack_minus";
+		}
 	} else {
 		element.className = "cell";
 	}
@@ -171,7 +183,7 @@ function mouseclick(element) {
 	if (!iSClickable(element)) return;
 	var x = parseInt(element.id.substr(0, 1));
 	var y = parseInt(element.id.substr(1, 1));
-	if (board[x][y] * turn == 4) {
+	if (board[x][y] * turn >= 4) {
 		doSpread(element, x, y);
 		spread = false;
 	} else {

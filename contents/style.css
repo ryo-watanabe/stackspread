@@ -1,6 +1,6 @@
 html {
 	text-align: center;
-	font-size: 50%;
+	font-size: 200%;
 	//font-family: 'Orbitron', sans-serif;
 	font-family: 'Press Start 2P', system-ui;
 	//background-color: #447744;
@@ -14,26 +14,26 @@ h1.title {
 span {
 	font-size: 70%;
 }
+button {
+	font-size: 150%;
+}
 div {
 	align: center;
 	margin: 0 auto;
 }
 div#board {
-	width: 200;
-	height: 200;
+	width: 800px;
+	height: 800px;
 	position: relative;
-	display: inline-block;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	font-size: 150%;
 }
 div.cell {
         text-align: center;
-	width: 25px;
-	height: 25px;
+	width: 100px;
+	height: 80px;
 	border: 2px #99dd99 solid;
 	position: absolute;
-	padding-top: 5px;
+	padding-top: 20px;
 }
 div.hover_plus {
         background-color: #00ffff;
@@ -46,4 +46,21 @@ div.stack_plus {
 }
 div.stack_minus {
         background-color: #ff99ff;
+}
+.blinking{
+	-webkit-animation:blink 0.3s infinite alternate;
+    -moz-animation:blink 0.3s infinite alternate;
+    animation:blink 0.3s infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
 }
