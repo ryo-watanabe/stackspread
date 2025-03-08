@@ -1,36 +1,39 @@
 html {
 	text-align: center;
-	font-size: 100%;
-	font-family: 'Orbitron', sans-serif;
+	font-size: 50%;
+	//font-family: 'Orbitron', sans-serif;
+	font-family: 'Press Start 2P', system-ui;
 	//background-color: #447744;
 	//color: #dddddd;
 	color: #669966;
 }
 h1.title {
-	font-size: 300%;
+	font-size: 200%;
 	margin-bottom: 10px;
 }
-table {
-        border-collapse: collapse;
-        margin: 0 auto;
+span {
+	font-size: 70%;
 }
 div {
 	align: center;
 	margin: 0 auto;
 }
 div#board {
-	width: 400;
-	height: 400;
+	width: 200;
+	height: 200;
 	position: relative;
 	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 150%;
 }
 div.cell {
         text-align: center;
-	width: 50px;
-	height: 50px;
+	width: 25px;
+	height: 25px;
 	border: 2px #99dd99 solid;
-	font-size: x-large;
 	position: absolute;
+	padding-top: 5px;
 }
 div.hover_plus {
         background-color: #00ffff;

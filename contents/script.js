@@ -46,7 +46,8 @@ function draw_board() {
 	var tb = document.getElementById("board");
 	// clear game board
 	while (tb.firstChild) tb.removeChild(tb.firstChild);
-	var offset = (7 - dim)*25;
+	var offset = (7 - dim)*12;
+	var step = 30;
 
 	for (var i = 0; i < dim; i++) {
 		for (var j = 0; j < dim; j++) {
@@ -54,8 +55,8 @@ function draw_board() {
 			// cells
 			var cell = document.createElement("div");
 			cell.className = "cell";
-			cell.style.top = j * 55 + offset;
-			cell.style.left = i * 55 + offset;
+			cell.style.top = j * step + offset;
+			cell.style.left = i * step + offset;
 			cell.id = String(i) + String(j);
 			cell.innerHTML = board[i][j];
 			addattr(cell);
@@ -67,14 +68,14 @@ function draw_board() {
 	var score_plus = document.createElement("div");
 	score_plus.className = "cell stack_plus";
 	score_plus.style.top = offset;
-	score_plus.style.left = dim * 55 + 10 + offset;
+	score_plus.style.left = dim * step + 10 + offset;
 	score_plus.id = "score_plus";
 	score_plus.innerHTML = score(1);
 	tb.appendChild(score_plus);
 	var score_minus = document.createElement("div");
 	score_minus.className = "cell stack_minus";
-	score_minus.style.top = 55 + offset;
-	score_minus.style.left = dim * 55 + 10 + offset;
+	score_minus.style.top = step + offset;
+	score_minus.style.left = dim * step + 10 + offset;
 	score_minus.id = "score_minus";
 	score_minus.innerHTML = score(-1);
 	tb.appendChild(score_minus);
