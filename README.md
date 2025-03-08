@@ -1,2 +1,2 @@
 # stackspread
-Stack and spread game
+Stack and spread a Game.
